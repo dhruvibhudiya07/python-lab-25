@@ -1,0 +1,28 @@
+# (a) Count lines, words, characters
+with open("example.txt", "r") as f:
+    text = f.read()
+lines = text.split("\n")
+words = text.split()
+chars = len(text)
+print("Lines:", len(lines))
+print("Words:", len(words))
+print("Characters:", chars)
+
+# (b) Read file line by line into a list
+lines_list = []
+with open("example.txt", "r") as f:
+    for line in f:
+        lines_list.append(line.rstrip("\n"))
+print(lines_list)
+
+# (c) Read CSV file and print rows
+import csv
+with open("data.csv", "r") as f:
+    reader = csv.reader(f)
+    for row in reader:
+        print(row)
+
+# (d) Merge two text files into merged.txt
+with open("file1.txt", "r") as f1, open("file2.txt", "r") as f2, open("merged.txt", "w") as f3:
+    f3.write(f1.read())
+    f3.write(f2.read())
