@@ -1,0 +1,48 @@
+import numpy as np
+# 1. Z-TRANSFORM OF UNIT STEP u[n]
+def analyze_unit_step_z_transform():
+    """
+    Computes the Z-transform of the unit step function u[n]:
+        U(z) = z / (z - 1)
+    and checks stability based on pole location.
+    """
+
+    pole = 1.0   # unit step has a pole at z = 1
+
+    print("\n--- UNIT STEP Z-TRANSFORM ANALYSIS ---")
+    print("Z-transform of u[n]:  U(z) = z / (z - 1)")
+    print(f"Pole of the system: z = {pole}")
+
+    magnitude = np.abs(pole)
+    print(f"Pole magnitude |z| = {magnitude}")
+
+    # Stability condition: system is stable if all poles lie strictly inside |z| < 1
+    if magnitude < 1:
+        result = "Stable"
+    else:
+        result = "Unstable (Pole lies on the unit circle)"
+    print(f"Conclusion: Unit Step System is **{result}**.\n")
+# 2. STABILITY ANALYSIS OF GIVEN SYSTEM
+#    H(z) = 0.5 (z - 0.7)(z - 0.9)(z - 0.6)(z - 0.4)
+def analyze_given_system():
+    """
+    Analyzes stability of system with poles at:
+    0.7, 0.9, 0.6, 0.4
+    """
+    print("--- ANALYSIS OF SYSTEM H(z)=0.5(z-0.7)(z-0.9)(z-0.6)(z-0.4) ---")
+
+    poles = np.array([0.7, 0.9, 0.6, 0.4])
+    print(f"Poles of the system: {poles}")
+
+    magnitudes = np.abs(poles)
+    print(f"Pole magnitudes: {magnitudes}")
+
+    # Check stability
+    if np.any(magnitudes >= 1):
+        result = "Unstable (One or more poles lie outside or on the unit circle)"
+    else:
+        result = "Stable (All poles lie strictly inside the unit circle)"
+
+    print(f"Conclusion: The system is **{result}**.\n")
+analyze_unit_step_z_transform()
+analyze_given_system()
