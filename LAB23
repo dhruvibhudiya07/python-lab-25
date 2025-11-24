@@ -1,0 +1,37 @@
+def validate_username(username):
+    # Username must be at least 5 characters and alphanumeric
+    if len(username) < 5:
+        return False, "Username must be at least 5 characters long."
+    if not username.isalnum():
+        return False, "Username must contain only letters and numbers."
+    return True, "Username is valid."
+
+
+def validate_password(password):
+    # Password must be at least 8 characters with upper, lower, digit
+    if len(password) < 8:
+        return False, "Password must be at least 8 characters long."
+    if not any(c.isupper() for c in password):
+        return False, "Password must contain at least one uppercase letter."
+    if not any(c.islower() for c in password):
+        return False, "Password must contain at least one lowercase letter."
+    if not any(c.isdigit() for c in password):
+        return False, "Password must contain at least one number."
+    return True, "Password is strong."
+
+
+# -------- MAIN PROGRAM --------
+username = input("Enter username: ")
+password = input("Enter password: ")
+
+u_valid, u_msg = validate_username(username)
+p_valid, p_msg = validate_password(password)
+
+print("\n--- Validation Results ---")
+print("Username:", u_msg)
+print("Password:", p_msg)
+
+if u_valid and p_valid:
+    print("\n🎉 Both username and password are valid!")
+else:
+    print("\n⚠️ Please fix the errors above.")
